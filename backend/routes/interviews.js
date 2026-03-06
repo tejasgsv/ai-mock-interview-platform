@@ -27,6 +27,15 @@ const aiLimiter = rateLimit({
   message: { message: 'Too many AI requests, please slow down.' },
 });
 
+const routerLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: 'Too many requests, please try again later.' },
+});
+
+router.use(routerLimiter);
 router.use(auth);
 
 router.post('/generate-questions', aiLimiter, generateQuestions);
