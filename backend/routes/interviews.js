@@ -35,6 +35,8 @@ const routerLimiter = rateLimit({
   message: { message: 'Too many requests, please try again later.' },
 });
 
+// Apply general rate limit first to protect the auth DB lookup from abuse,
+// then verify the JWT token for all routes.
 router.use(routerLimiter);
 router.use(auth);
 

@@ -179,7 +179,7 @@ const Interview = () => {
           <div className="progress-bar">
             <div
               className="progress-fill"
-              style={{ width: `${((currentIndex) / questions.length) * 100}%` }}
+              style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
             />
           </div>
           <button
